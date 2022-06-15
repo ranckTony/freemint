@@ -1,0 +1,48 @@
+.filter {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+}
+
+
+.filterTab {
+    display: flex;
+    width: 325px;
+    justify-content: space-between;
+}
+
+
+
+.period {
+    display: flex;
+    margin-left: auto;
+}
+
+.period label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #131214;
+}
+
+.period ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+
+}
+
+.period li {
+    list-style: none;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #B4B4B8;
+    cursor: pointer;
+
+}
+
+
+.period .active {
+    color: #131214;
+    cursor: default;
+}

@@ -1,0 +1,33 @@
+@import '~antd/dist/antd.css';
+
+body {
+    margin: 0;
+}
+
+
+
+.headerInput {
+    border-radius: 90px;
+    border: 0;
+    padding: 11px 15px;
+    background-color: #F6F6F6;
+}
+
+.headerInput .ant-input {
+    background-color: #F6F6F6;
+
+}
+
+.headerWallet {
+    height: 44px;
+    width: 174px;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+
+.bigButton {
+    height: 44px;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
