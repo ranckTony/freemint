@@ -3,3 +3,82 @@
     min-height: calc(100vh - 352px);
 }
 
+.name {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.name img {
+    width: 36px;
+    height: 36px;
+}
+
+.nameContent {
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+}
+
+.nameDetail {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    /* identical to box height, or 162% */
+    font-feature-settings: 'ss01' on, 'ss07' on;
+    /* 中性色/文字 Text/5-正文标题 */
+    color: #131214;
+}
+
+.time {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    /* identical to box height, or 183% */
+    font-feature-settings: 'ss01' on, 'ss07' on;
+    /* 中性色/文字 Text/4-副标题 */
+    color: #9B9A9D;
+}
+
+.floorPriceContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.floorPriceContainer img {
+    width: 24px;
+    height: 24px;
+}
+
+.floorPrice {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    font-feature-settings: 'ss01' on, 'ss07' on;
+    color: #131214;
+}
+
+.partionTips {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    font-feature-settings: 'ss01' on, 'ss07' on;
+    color: #131214;
+}
+
+.ranking {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    font-feature-settings: 'ss01' on, 'ss07' on;
+    color: #9B9A9D;
+}
