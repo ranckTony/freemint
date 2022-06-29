@@ -1,5 +1,3 @@
-
-
 import React, { FC } from "react"
 import { Table } from "antd";
 import styles from "./index.module.css";
