@@ -1,39 +1,46 @@
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { Button } from "antd";
 import { HeartOutlined } from '@ant-design/icons';
 
 
 import styles from "./index.module.css";
 
-const Filter: FC = () => {
+interface IProps {
+    value: string,
+    change: (a: string) => void
+}
+
+
+const Filter: FC<IProps> = ({ value, change }) => {
+
+
 
     const [active, setActive] = useState("all")
-    const [period, setPeriod] = useState("1M")
 
     const periodList = [{
         text: "1M",
-        value: "1M"
+        value: "MINUTE_01"
     }, {
         text: "5M",
-        value: "5M"
+        value: "MINUTE_05"
     }, {
         text: "15M",
-        value: "15M"
+        value: "MINUTE_15"
     }, {
         text: "30M",
-        value: "30M"
+        value: "MINUTE_30"
     }, {
         text: "1H",
-        value: "1H"
+        value: "HOUR_01"
     }, {
-        text: "6D",
-        value: "6D"
+        text: "6H",
+        value: "HOUR_06"
     }, {
         text: "12H",
-        value: "12H"
+        value: "HOUR_12"
     }, {
-        text: "1D",
-        value: "1D"
+        text: "24H",
+        value: "HOUR_24"
     },]
 
 
@@ -50,7 +57,7 @@ const Filter: FC = () => {
             <div className={styles.period}>
                 <label htmlFor="">Period:</label>
                 <ul>
-                    {periodList.map(item => <li onClick={() => setPeriod(item.value)} className={`${item.value === period ? styles.active : ""}`}>{item.text}</li>)}
+                    {periodList.map(item => <li onClick={() => change(item.value)} className={`${item.value === value ? styles.active : ""}`}>{item.text}</li>)}
                 </ul>
             </div>
 
