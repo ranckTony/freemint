@@ -5,7 +5,6 @@ import Header from './components/Header';
 import Description from './components/Description';
 import Filter from './components/Filter';
 import DataList from "./components/DataList"
-import Footer from './components/Footer';
 
 import { getCollectionList } from './services';
 import { iCollectionListParams } from './typings';
@@ -36,7 +35,6 @@ function App() {
       <Description />
       <Filter value={period} change={setPeriod} />
       <DataList data={dataList} />
-      <Footer />
     </div>
   );
 }

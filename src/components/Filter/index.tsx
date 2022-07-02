@@ -53,6 +53,7 @@ const Filter: FC<IProps> = ({ value, change }) => {
                 <Button onClick={() => setActive("collection")} className="bigButton" type={active === "collection" ? "primary" : "default"}><HeartOutlined /></Button>
             </div>
 
+            <span className={styles.blockDelay}>区块延时：0s</span>
 
             <div className={styles.period}>
                 <label htmlFor="">Period:</label>

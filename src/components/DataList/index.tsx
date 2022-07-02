@@ -8,6 +8,12 @@ import link1 from "../../assets/link1.png";
 import link2 from "../../assets/link2.png";
 import link3 from "../../assets/link3.png";
 import link4 from "../../assets/link4.png";
+import tips from "../../assets/tips.png";
+import top1 from "../../assets/top1.png";
+import top2 from "../../assets/top2.png"; 
+import top3 from "../../assets/top3.png"; 
+import top4 from "../../assets/top4.png"; 
+import Footer from '../../components/Footer';
 
 import { StarOutlined } from '@ant-design/icons';
 import { iCollectionItem } from "../../typings";
@@ -61,7 +67,7 @@ export default function DataList({ data }: IProps) {
 
     return (
         <div className={styles.dataList}>
-            <Table dataSource={data}>
+            <Table dataSource={data} pagination={{position: ["bottomCenter"]}}>
                 <Column
                     title="Collection"
                     key="name"
@@ -80,33 +86,47 @@ export default function DataList({ data }: IProps) {
                     )}
                 />
                 <Column
-                    title="Floor Price"
-                    key="price"
-                    render={(_: any, record: iCollectionItem) => (
-                        <div className={styles.floorPriceContainer}>
-                            <img src={eth} alt=""></img>
-                            {/* <text className={styles.floorPrice}>{record.floorPrice}</text> */}
+                    title={
+                        <div style={{display:'flex'}}>
+                            <span>Items</span>
+                            <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
                         </div>
-                    )}
-                />
-                <Column
-                    title="Items"
+                    }
                     key="items"
                     render={(_: any, record: iCollectionItem) => (
-                        <div className={styles.floorPriceContainer}>
+                        <div className={styles.topWalletContainer}>
                             <text className={styles.floorPrice}>{record.totalSupply}</text>
                             <img src={certification} alt=""></img>
                         </div>
                     )}
                 />
                 <Column
-                    title="Pending"
+                    title="Owner Address"
+                    key="price"
+                    render={(_: any, record: iCollectionItem) => (
+                        <div className={styles.topWalletContainer}>
+                            <text className={styles.floorPrice}>{record.ownerCount}</text>
+                        </div>
+                    )}
+                />
+                <Column
+                    title={
+                        <div style={{display:'flex'}}>
+                            <span>Pending</span>
+                            <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                        </div>
+                    }
                     key="pending"
                     dataIndex="pending"
                     className={styles.floorPrice}
                 />
                 <Column
-                    title="Minted"
+                    title={
+                        <div style={{display:'flex'}}>
+                            <span>Minted</span>
+                            <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                        </div>
+                    }
                     key="minted"
                     dataIndex="minted"
                     className={styles.floorPrice}
@@ -132,19 +152,29 @@ export default function DataList({ data }: IProps) {
                     )}
                 />
                 <Column
-                    title="Volume (Ranking)"
+                    title={
+                        <div style={{display:'flex'}}>
+                            <span>Top Wallet</span>
+                            <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                        </div>
+                    }
                     key="volume"
                     render={(_: any, record: iCollectionItem) => (
-                        <div className={styles.floorPriceContainer}>
-                            <img src={eth} alt=""></img>
-                            {/* <text className={styles.floorPrice}>{record.volume}</text> */}
-                            <text className={styles.ranking} style={{ marginLeft: '4px' }}>{record.verified}</text>
+                        <div className={styles.topWalletContainer}>
+                            <img src={top1} alt="" style={{zIndex:5}}></img>
+                            <img src={top2} alt="" style={{zIndex:4}}></img>
+                            <img src={top3} alt="" style={{zIndex:3}}></img>
+                            <img src={top4} alt="" style={{zIndex:2}}></img>
+                            <img src={top1} alt="" style={{zIndex:1}}></img>
+                            <img src={top2} alt="" style={{zIndex:0}}></img>
+                            <span className={styles.topWallet}>+12</span>
                         </div>
                     )}
                 />
                 <Column
                     title="Links"
                     key="links"
+                    className={styles.linksColumn}
                     render={(_: any, record: iCollectionItem) => (
                         <Space size={24}>
                             <img src={link1} alt="" style={{ width: '24px' }} ></img>
@@ -155,6 +185,7 @@ export default function DataList({ data }: IProps) {
                     )}
                 />
             </Table>
+            <Footer />
         </div>
     )
 }
