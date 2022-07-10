@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Routes, Route, Link } from "react-router-dom";
+
 import "./styles/reset.css"
 
 import Header from './components/Header';
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <Header />
       <Description />
       <Filter value={period} change={setPeriod} />

@@ -1,0 +1,48 @@
+.descrip {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+}
+
+.descrip h1 {
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: 600;
+    color: #131214;
+    margin-bottom: 12px;
+
+}
+
+.descrip p {
+    font-size: 16px;
+    color: #131214;
+    margin-bottom: 0;
+}
+
+.descrip .gasfree {
+    margin-left: auto;
+}
+
+.descrip .gasfree h3 {
+    font-size: 16px;
+    color: #131214;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.descrip .gasfreeContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 44px;
+    border: 1px solid #EDEDED;
+    border-radius: 10px;
+
+}
+
+.descrip .gasfreeContent strong {
+    font-size: 18px;
+    color: #131214;
+    padding: 0 10px;
+}

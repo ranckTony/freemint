@@ -1,0 +1,30 @@
+.footer {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 24px;
+}
+
+.copyright {
+    font-size: 14px;
+    color: #B4B4B8;
+}
+
+.message {
+    margin-left: auto;
+    display: flex;
+}
+
+
+.footer .icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #B4B4B8;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.footer .icon :hover {
+    color: #333;
+}
