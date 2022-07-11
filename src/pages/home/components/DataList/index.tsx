@@ -1,16 +1,16 @@
 import React, { FC } from "react"
 import { Table, Space } from "antd";
 import styles from "./index.module.css";
-import userface from "../../assets/userface.png";
-import eth from "../../assets/eth.png";
-import certification from "../../assets/certification.png";
-import link1 from "../../assets/link1.png";
-import link2 from "../../assets/link2.png";
-import link3 from "../../assets/link3.png";
-import link4 from "../../assets/link4.png";
+import userface from "@/assets/userface.png";
+import eth from "@/assets/eth.png";
+import certification from "@/assets/certification.png";
+import link1 from "@/assets/link1.png";
+import link2 from "@/assets/link2.png";
+import link3 from "@/assets/link3.png";
+import link4 from "@/assets/link4.png";
 
 import { StarOutlined } from '@ant-design/icons';
-import { iCollectionItem } from "../../typings";
+import { iCollectionItem } from "@/typings";
 
 interface IProps {
     data: iCollectionItem[]

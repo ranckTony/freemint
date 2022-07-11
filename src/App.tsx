@@ -1,45 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
-import "./styles/reset.css"
+import Home from "@/pages/home";
+import Task from "@/pages/task";
+import "./styles/reset.css";
 
-import Header from './components/Header';
-import Description from './components/Description';
-import Filter from './components/Filter';
-import DataList from "./components/DataList"
-import Footer from './components/Footer';
-
-import { getCollectionList } from './services';
-import { iCollectionListParams } from './typings';
-
-import "./mock"
+import "./mock";
 
 function App() {
-
-  const [period, setPeriod] = useState("MINUTE_01")
-
-  const [dataList, setDataList] = useState([])
-
-
-  useEffect(() => {
-    const params: iCollectionListParams = {
-      period
-    }
-    getCollectionList(params).then(({ data }) => {
-      console.log(data)
-      setDataList(data)
-    })
-
-  }, [period])
-
   return (
     <div className="App">
-      
-      <Header />
-      <Description />
-      <Filter value={period} change={setPeriod} />
-      <DataList data={dataList} />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/task" element={<Task />}></Route>
+      </Routes>
     </div>
   );
 }

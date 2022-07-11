@@ -2,7 +2,7 @@ import React, { FC, useState } from "react"
 import { Button, Input } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
 import styles from "./index.module.css";
-import logooo from "../../assets/logooo.png";
+import logooo from "@/assets/logooo.png";
 import { ethers } from "ethers";
 
 export default function Header() {
