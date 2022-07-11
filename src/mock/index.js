@@ -4,7 +4,7 @@ Mock.mock(/\/collection\/list/, "get", option => {
     console.log(option, "mock option")
 
     const data = Mock.mock({
-        "data|1-10": [
+        "data|0-20": [
             {
                 "name|+1": [
                     "Hello",

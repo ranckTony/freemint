@@ -31,3 +31,17 @@ body {
     padding: 10px 12px;
     border-radius: 12px;
 }
+
+/* 表头样式 */
+.ant-table-thead > tr > th {
+    background-color: #fff;
+    color: #9B9A9D;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+}
+.ant-table-thead > tr > th:last-child {
+    text-align: right;
+}

@@ -8,7 +8,6 @@ const Footer: FC = () => {
         <div className={styles.footer}>
             <div className={styles.copyright}>
                 © Elserare, Inc. All rights reserved.
-
             </div>
             <div className={styles.message}>
                 <div className={styles.icon}>

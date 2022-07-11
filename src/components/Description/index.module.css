@@ -41,8 +41,27 @@
 
 }
 
+.descrip .gasfreeContent img {
+    width: 24px;
+    height: 24px;
+}
+
 .descrip .gasfreeContent strong {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
     font-size: 18px;
+    line-height: 28px;
     color: #131214;
-    padding: 0 10px;
+    padding-right: 10px;
+}
+
+.descrip .gasfreeContent span {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #131214; 
+    white-space: nowrap;
 }
