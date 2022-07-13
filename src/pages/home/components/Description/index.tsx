@@ -2,6 +2,7 @@ import React, { FC } from "react"
 import { Button, Input } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
 import styles from "./index.module.css";
+import eth from "@/assets/eth.png";
 
 export default function Description() {
     return (
@@ -14,7 +15,7 @@ export default function Description() {
            <div className={styles.gasfree}>
             <h3>Gas fee now</h3>
             <div className={styles.gasfreeContent}>
-                <i></i>
+                <img src={eth} alt=""/>
                 <strong>0.02</strong>
                 <span>$20</span>
             </div>

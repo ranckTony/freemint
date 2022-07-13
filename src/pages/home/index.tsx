@@ -24,7 +24,7 @@ function Home() {
     };
     getCollectionList(params).then(({ data }) => {
       console.log(data);
-      setDataList(data);
+      setDataList(data.data);
     });
   }, [period]);
 
@@ -34,7 +34,6 @@ function Home() {
       <Description />
       <Filter value={period} change={setPeriod} />
       <DataList data={dataList} />
-      <Footer />
     </div>
   );
 }

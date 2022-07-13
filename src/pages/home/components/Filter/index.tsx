@@ -50,9 +50,9 @@ const Filter: FC<IProps> = ({ value, change }) => {
             <div className={styles.filterTab}>
                 <Button onClick={() => setActive("all")} className="bigButton" style={{ width: "124px" }} type={active === "all" ? "primary" : "default"}>All</Button>
                 <Button onClick={() => setActive("verified")} className="bigButton" style={{ width: "124px" }} type={active === "verified" ? "primary" : "default"}>Verified</Button>
-                <Button onClick={() => setActive("collection")} className="bigButton" type={active === "collection" ? "primary" : "default"}><HeartOutlined /></Button>
             </div>
 
+            <span className={styles.blockDelay}>区块延时：0s</span>
 
             <div className={styles.period}>
                 <label htmlFor="">Period:</label>

@@ -4,14 +4,21 @@
     padding: 24px;
 }
 
+.blockDelay {
+    margin-left: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    color: #9B9A9D;
+}
 
 .filterTab {
     display: flex;
-    width: 325px;
+    width: 260px;
     justify-content: space-between;
 }
-
-
 
 .period {
     display: flex;

@@ -1,160 +1,202 @@
-import React, { FC } from "react"
-import { Table, Space } from "antd";
+import React, { FC, useEffect, useRef } from "react"
+import { Table, Space, Tooltip } from "antd";
 import styles from "./index.module.css";
 import userface from "@/assets/userface.png";
-import eth from "@/assets/eth.png";
 import certification from "@/assets/certification.png";
 import link1 from "@/assets/link1.png";
 import link2 from "@/assets/link2.png";
 import link3 from "@/assets/link3.png";
 import link4 from "@/assets/link4.png";
+import tips from "@/assets/tips.png";
+import Footer from '@/components/Footer';
 
 import { StarOutlined } from '@ant-design/icons';
-import { iCollectionItem } from "@/typings";
+import { iCollectionListItem } from "@/typings";
+import { timeFrom } from "@/utils";
 
 interface IProps {
-    data: iCollectionItem[]
+    data: iCollectionListItem[]
 }
 
 export default function DataList({ data }: IProps) {
     const { Column } = Table
-    interface DataType {
-        key: React.Key;
-        name: string;
-        time: string;
-        partion: number[];
-        floorPrice: number;
-        items: number;
-        pending: number;
-        minted: number;
-        volume: number;
-        ranking: number;
-        links: Object;
-    }
-
-    // const data: DataType[] = [];
-    // for (let i = 0; i < 25; i++) {
-    //     data.push({
-    //         key: i,
-    //         name: 'KIWAMI Genesisosss',
-    //         time: '23:30 Jun 09',
-    //         partion: [41, 39, 20],
-    //         floorPrice: 0.012,
-    //         items: 652,
-    //         pending: 740,
-    //         minted: 703,
-    //         volume: 589.99,
-    //         ranking: 556,
-    //         links: {
-    //             a: 'www.baidu.com',
-    //             b: 'www.baidu.com',
-    //             c: 'www.baidu.com',
-    //             d: 'www.baidu.com',
-    //         }
-    //     });
-    // }
 
     const partionColumWidth = 190
-    const partionWidth = (partion: number) => {
-        return partion / 100 * partionColumWidth;
+    const partionWidth = (a: number[]) => {
+        return a[0]/(a[0]+a[1]+a[2]) * partionColumWidth;
+    }
+    const partion = (a: number[]) => {
+        return Math.round(a[0]/(a[0]+a[1]+a[2]) * 100) 
     }
 
     return (
         <div className={styles.dataList}>
-            <Table dataSource={data}>
+            <Table dataSource={data} pagination={{position: ["bottomCenter"]}} tableLayout="fixed">
                 <Column
                     title="Collection"
                     key="name"
-                    // width="260px"
-                    render={(_: any, record: iCollectionItem) => (
+                    width="300px"
+                    render={(_: any, record: iCollectionListItem) => (
                         <div className={styles.name}>
-                            <img src={userface} alt=""></img>
+                            <img src={record.baseInfo.imageURI ?? userface} alt="" style={{borderRadius: '50%'}}></img>
                             <div className={styles.nameContent}>
                                 <div>
-                                    <text className={styles.nameDetail}>{record.name}</text>
+                                    <div className={styles.nameDetail}>
+                                        <span>{record.baseInfo.name}</span>
+                                    </div>
                                     <StarOutlined style={{ fontSize: '16px', color: '#B4B4B8', marginLeft: '4px' }} />
                                 </div>
-                                {/* <text className={styles.time}>{record.time}</text> */}
+                                <span className={styles.time}>{timeFrom(record.baseInfo.createdAt)}</span>
                             </div>
                         </div>
                     )}
                 />
                 <Column
-                    title="Floor Price"
-                    key="price"
-                    render={(_: any, record: iCollectionItem) => (
-                        <div className={styles.floorPriceContainer}>
-                            <img src={eth} alt=""></img>
-                            {/* <text className={styles.floorPrice}>{record.floorPrice}</text> */}
-                        </div>
-                    )}
-                />
-                <Column
-                    title="Items"
+                    title={
+                        <Tooltip placement="top" title={"ItemsItemsItemsItems"} arrowPointAtCenter>
+                            <div style={{display:'flex'}}>
+                                <span>Items</span>
+                                <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                            </div>
+                        </Tooltip>
+                    }
                     key="items"
-                    render={(_: any, record: iCollectionItem) => (
-                        <div className={styles.floorPriceContainer}>
-                            <text className={styles.floorPrice}>{record.totalSupply}</text>
+                    width="150px"
+                    render={(_: any, record: iCollectionListItem) => (
+                        <div className={styles.topWalletContainer}>
+                            <span className={styles.floorPrice}>{record.freeMintStatInfo.totalSupply}</span>
                             <img src={certification} alt=""></img>
                         </div>
                     )}
                 />
                 <Column
-                    title="Pending"
+                    title="Owner Address"
+                    key="price"
+                    width="160px"
+                    render={(_: any, record: iCollectionListItem) => (
+                        <Tooltip placement="top" title={record.baseInfo.owner} arrowPointAtCenter>
+                            <div className={styles.topWalletContainer}>
+                                <span className={styles.floorPrice}>{record.baseInfo.owner.slice(0,6) + '...' + record.baseInfo.owner.slice(-4)}</span>
+                            </div>
+                        </Tooltip>
+                    )}
+                />
+                <Column
+                    title={
+                        <Tooltip placement="top" title={"PendingPendingPendingPending"} arrowPointAtCenter>
+                            <div style={{display:'flex'}}>
+                                <span>Pending</span>
+                                <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                            </div>
+                        </Tooltip>
+
+                    }
                     key="pending"
-                    dataIndex="pending"
+                    width="150px"
                     className={styles.floorPrice}
+                    render={(_: any, record: iCollectionListItem) => (
+                        <span>{record.freeMintStatInfo.pending}</span>
+                    )}
                 />
                 <Column
-                    title="Minted"
+                    title={
+                        <Tooltip placement="top" title={"MintedMintedMinted MintedMinted  Minted"} arrowPointAtCenter>
+                            <div style={{display:'flex'}}>
+                                <span>Minted</span>
+                                <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                            </div>
+                        </Tooltip>
+                    }
                     key="minted"
-                    dataIndex="minted"
+                    width="150px"
                     className={styles.floorPrice}
+                    render={(_: any, record: iCollectionListItem) => (
+                        <span>{record.freeMintStatInfo.minted}</span>
+                    )}
                 />
                 <Column
-                    title="Minted / Pending / Leave"
+                    title="Left / Pending / Minted"
                     key="partion"
-                    render={(_: any, record: iCollectionItem) => (
+                    render={(_: any, record: iCollectionListItem) => (
                         <Space size={0}>
-                            <div style={{ width: partionWidth(record.partion[0]) }}>
-                                <text className={styles.partionTips}>{record.partion[0]}%</text>
+                            <div style={{ width: partionWidth([
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted, 
+                                        record.freeMintStatInfo.pending,
+                                        record.freeMintStatInfo.minted]) }}>
+                                <span className={styles.partionTips}>{
+                                    partion([
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted, 
+                                        record.freeMintStatInfo.pending,
+                                        record.freeMintStatInfo.minted])
+                                        }%
+                                    </span>
                                 <div style={{ height: '12px', backgroundColor: '#217AFF' }}></div>
                             </div>
-                            <div style={{ width: partionWidth(record.partion[1]) }}>
-                                <text className={styles.partionTips}>{record.partion[1]}%</text>
+                            <div style={{ width:  partionWidth([
+                                        record.freeMintStatInfo.pending,
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted, 
+                                        record.freeMintStatInfo.minted]) }}>
+                                <span className={styles.partionTips}>{
+                                    partion([
+                                        record.freeMintStatInfo.pending,
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted,
+                                        record.freeMintStatInfo.minted])
+                                    }%
+                                </span>
                                 <div style={{ height: '12px', backgroundColor: '#5398FF' }}></div>
                             </div>
-                            <div style={{ width: partionWidth(record.partion[2]) }}>
-                                <text className={styles.partionTips}>{record.partion[2]}%</text>
+                            <div style={{ width: partionWidth([
+                                        record.freeMintStatInfo.minted,
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted, 
+                                        record.freeMintStatInfo.pending]) }}>
+                                <span className={styles.partionTips}>{
+                                    100 - 
+                                    partion([
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted, 
+                                        record.freeMintStatInfo.pending,
+                                        record.freeMintStatInfo.minted]) -
+                                    partion([
+                                        record.freeMintStatInfo.pending,
+                                        record.freeMintStatInfo.totalSupply -  record.freeMintStatInfo.pending - record.freeMintStatInfo.minted,
+                                        record.freeMintStatInfo.minted])                                    
+                                    }%
+                                </span>
                                 <div style={{ height: '12px', backgroundColor: '#C1DAFF' }}></div>
                             </div>
                         </Space>
                     )}
                 />
                 <Column
-                    title="Volume (Ranking)"
-                    key="volume"
-                    render={(_: any, record: iCollectionItem) => (
-                        <div className={styles.floorPriceContainer}>
-                            <img src={eth} alt=""></img>
-                            {/* <text className={styles.floorPrice}>{record.volume}</text> */}
-                            <text className={styles.ranking} style={{ marginLeft: '4px' }}>{record.verified}</text>
-                        </div>
-                    )}
-                />
-                <Column
                     title="Links"
                     key="links"
-                    render={(_: any, record: iCollectionItem) => (
+                    className={styles.linksColumn}
+                    render={(_: any, record: iCollectionListItem) => (
                         <Space size={24}>
-                            <img src={link1} alt="" style={{ width: '24px' }} ></img>
-                            <img src={link2} alt="" style={{ width: '24px' }}></img>
-                            <img src={link3} alt="" style={{ width: '24px' }}></img>
-                            <img src={link4} alt="" style={{ width: '24px' }}></img>
+                            {record.baseInfo.looksrareSite &&
+                            <a href={record.baseInfo.looksrareSite}>
+                                <img src={link1} alt="" style={{ width: '24px' }} ></img>
+                            </a>
+                            }
+                            {record.baseInfo.twitter && 
+                            <a href={record.baseInfo.twitter}>
+                                <img src={link2} alt="" style={{ width: '24px' }}></img>
+                            </a>
+                            }
+                            {record.baseInfo.openseaSite && 
+                            <a href={record.baseInfo.openseaSite}>
+                                <img src={link3} alt="" style={{ width: '24px' }}></img>
+                            </a>
+                            }
+                            {record.baseInfo.etherscan && 
+                            <a href={record.baseInfo.etherscan}>
+                                <img src={link4} alt="" style={{ width: '24px' }}></img>
+                            </a>
+                            }
                         </Space>
                     )}
                 />
             </Table>
+            <Footer />
         </div>
     )
 }

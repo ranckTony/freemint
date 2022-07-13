@@ -1,4 +1,5 @@
 .dataList {
+    position: relative;
     padding:  0 24px;
     min-height: calc(100vh - 352px);
 }
@@ -30,6 +31,11 @@
     font-feature-settings: 'ss01' on, 'ss07' on;
     /* 中性色/文字 Text/5-正文标题 */
     color: #131214;
+    width: 200px;
+    white-space: nowrap;    
+    overflow: hidden;       
+    text-overflow: ellipsis;   
+    display: inline-block;     
 }
 
 .time {
@@ -42,15 +48,16 @@
     color: #9B9A9D;
 }
 
-.floorPriceContainer {
+.topWalletContainer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.floorPriceContainer img {
-    width: 24px;
-    height: 24px;
+.topWalletContainer img {
+    width: 32px;
+    height: 32px;
+    margin-right: -12px;
 }
 
 .floorPrice {
@@ -71,14 +78,19 @@
     line-height: 22px;
     font-feature-settings: 'ss01' on, 'ss07' on;
     color: #131214;
+    white-space: nowrap;
 }
 
-.ranking {
+.topWallet {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 22px;
-    font-feature-settings: 'ss01' on, 'ss07' on;
+    font-size: 16px;
+    line-height: 26px;
     color: #9B9A9D;
+    margin-left: 18px;
+}
+
+.linksColumn {
+    text-align: right;
 }
