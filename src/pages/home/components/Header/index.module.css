@@ -1,6 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 16px 24px;
 }
 
@@ -33,3 +34,21 @@
 }
 
 .header .wallet {}
+
+.nav {
+    flex: 1;
+}
+
+.nav span {
+    margin-left: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    color: #9B9A9D;
+}
+
+.nav span:hover {
+    color: black;
+}

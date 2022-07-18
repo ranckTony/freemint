@@ -133,6 +133,11 @@ export default function Header() {
       <div className={styles.logo}>
         <img src={profitKing} alt="" style={{ width: "128px" }}></img>
       </div>
+      <div className={styles.nav}>
+          <a href="/"><span>Home</span></a>
+          <a href="/"><span>Discover</span></a>
+          <a href="/"><span>Smart Bot</span></a>
+      </div>
       <div className={styles.wallet}>{btn}</div>
     </div>
   );

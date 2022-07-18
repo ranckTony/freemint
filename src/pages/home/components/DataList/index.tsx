@@ -8,6 +8,11 @@ import { WebSite } from "@/pages/svgComponent/webSite";
 import { Twitter } from "@/pages/svgComponent/twitter";
 import { Opensea } from "@/pages/svgComponent/openSea";
 import { Etherscan } from "@/pages/svgComponent/etherscan";
+import top1 from "@/assets/top1.png";
+import top2 from "@/assets/top2.png";
+import top3 from "@/assets/top3.png";
+import top4 from "@/assets/top4.png";
+import top5 from "@/assets/top5.png";
 import Footer from "../Footer";
 
 import { iCollectionItem } from "@/typings";
@@ -60,7 +65,7 @@ export default function DataList({ data }: IProps) {
                 />
                 <Column
                     title={
-                        <Tooltip placement="top" title={"ItemsItemsItemsItems"} arrowPointAtCenter>
+                        <Tooltip placement="top" title={"total supply"} arrowPointAtCenter>
                             <div style={{display:'flex'}}>
                                 <span>Items</span>
                                 <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
@@ -68,7 +73,7 @@ export default function DataList({ data }: IProps) {
                         </Tooltip>
                     }
                     key="items"
-                    width="150px"
+                    width="110px"
                     render={(_: any, record: iCollectionItem) => (
                         <div className={styles.topWalletContainer}>
                             <span className={styles.floorPrice}>{record.totalSupply}</span>
@@ -79,7 +84,7 @@ export default function DataList({ data }: IProps) {
                 <Column
                     title="Owner Address"
                     key="price"
-                    width="160px"
+                    width="120px"
                     className={styles.floorPrice}
                     render={(_: any, record: iCollectionItem) => (
                         <span>{record.ownerCount}</span>
@@ -87,7 +92,7 @@ export default function DataList({ data }: IProps) {
                 />
                 <Column
                     title={
-                        <Tooltip placement="top" title={"PendingPendingPendingPending"} arrowPointAtCenter>
+                        <Tooltip placement="top" title={"NFTs are pending now, which can be canceled by buyers"} arrowPointAtCenter>
                             <div style={{display:'flex'}}>
                                 <span>Pending</span>
                                 <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
@@ -96,7 +101,7 @@ export default function DataList({ data }: IProps) {
 
                     }
                     key="pending"
-                    width="150px"
+                    width="100px"
                     className={styles.floorPrice}
                     render={(_: any, record: iCollectionItem) => (
                         <span>{record.pending}</span>
@@ -104,7 +109,7 @@ export default function DataList({ data }: IProps) {
                 />
                 <Column
                     title={
-                        <Tooltip placement="top" title={"MintedMintedMinted MintedMinted  Minted"} arrowPointAtCenter>
+                        <Tooltip placement="top" title={"NFTs have minted"} arrowPointAtCenter>
                             <div style={{display:'flex'}}>
                                 <span>Minted</span>
                                 <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
@@ -112,7 +117,7 @@ export default function DataList({ data }: IProps) {
                         </Tooltip>
                     }
                     key="minted"
-                    width="150px"
+                    width="100px"
                     className={styles.floorPrice}
                     render={(_: any, record: iCollectionItem) => (
                         <span>{record.minted}</span>
@@ -176,6 +181,26 @@ export default function DataList({ data }: IProps) {
                             </Space>
                         </div>
                         
+                    )}
+                />
+                <Column
+                    title={
+                        <div style={{display:'flex'}}>
+                            <span>Top Wallet</span>
+                            <img src={tips} alt="" style={{width:'24px', height:'24px'}}></img>
+                        </div>
+                    }
+                    key="volume"
+                    render={(_: any, record: iCollectionItem) => (
+                        <div className={styles.topWalletContainer}>
+                            <img src={top1} alt="" style={{zIndex:5}}></img>
+                            <img src={top2} alt="" style={{zIndex:4}}></img>
+                            <img src={top3} alt="" style={{zIndex:3}}></img>
+                            <img src={top4} alt="" style={{zIndex:2}}></img>
+                            <img src={top1} alt="" style={{zIndex:1}}></img>
+                            <img src={top5} alt="" style={{zIndex:0}}></img>
+                            <span className={styles.topWallet}>+{record.ownerCount%100}</span>
+                        </div>
                     )}
                 />
                 <Column

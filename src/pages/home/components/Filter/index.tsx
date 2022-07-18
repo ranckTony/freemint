@@ -17,6 +17,12 @@ const Filter: FC<IProps> = ({ value, change }) => {
     const [active, setActive] = useState("all")
 
     const periodList = [{
+        text: "1M",
+        value: "MINUTE_01"
+    }, {
+        text: "5M",
+        value: "MINUTE_05"
+    }, {
         text: "15M",
         value: "MINUTE_15"
     }, {
@@ -44,16 +50,13 @@ const Filter: FC<IProps> = ({ value, change }) => {
                 <Button onClick={() => setActive("all")} className="bigButton" style={{ width: "124px" }} type={active === "all" ? "primary" : "default"}>All</Button>
                 <Button onClick={() => setActive("verified")} className="bigButton" style={{ width: "124px" }} type={active === "verified" ? "primary" : "default"}>Verified</Button>
             </div>
-
-            <span className={styles.blockDelay}>区块延时：0s</span>
-
+            <span className={styles.blockDelay}>区块延时：0.5s</span>
             <div className={styles.period}>
                 <label htmlFor="">Period:</label>
                 <ul>
                     {periodList.map(item => <li onClick={() => change(item.value)} className={`${item.value === value ? styles.active : ""}`}>{item.text}</li>)}
                 </ul>
             </div>
-
         </div >
     )
 }
