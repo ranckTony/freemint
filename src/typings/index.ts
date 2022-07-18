@@ -11,12 +11,10 @@ export interface iCollectionItem {
     website: string,
     twitter: string,
     opensea: string,
-    looksrare: string,
-    x2y2: string,
     etherscan: string,
     pending: number,
     minted: number,
-    partion: number[]
+    createdAt: string
 }
 
 

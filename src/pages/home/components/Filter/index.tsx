@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from "react"
+import React, { FC, useState } from "react"
 import { Button } from "antd";
-import { HeartOutlined } from '@ant-design/icons';
 
 
 import styles from "./index.module.css";
@@ -18,12 +17,6 @@ const Filter: FC<IProps> = ({ value, change }) => {
     const [active, setActive] = useState("all")
 
     const periodList = [{
-        text: "1M",
-        value: "MINUTE_01"
-    }, {
-        text: "5M",
-        value: "MINUTE_05"
-    }, {
         text: "15M",
         value: "MINUTE_15"
     }, {

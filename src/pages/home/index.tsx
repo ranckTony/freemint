@@ -14,7 +14,7 @@ import { iCollectionListParams } from "@/typings";
 import "@/mock";
 
 function Home() {
-  const [period, setPeriod] = useState("MINUTE_01");
+  const [period, setPeriod] = useState("HOUR_01");
 
   const [dataList, setDataList] = useState([]);
 

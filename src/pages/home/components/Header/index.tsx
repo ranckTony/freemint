@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { Button, Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import styles from "./index.module.css";
 import profitKing from "@/assets/profitKing.png";
 import { ethers } from "ethers";
@@ -133,13 +132,6 @@ export default function Header() {
     <div className={styles.header}>
       <div className={styles.logo}>
         <img src={profitKing} alt="" style={{ width: "128px" }}></img>
-      </div>
-      <div className={styles.search}>
-        <Input
-          className="headerInput"
-          placeholder="Search"
-          prefix={<SearchOutlined />}
-        />
       </div>
       <div className={styles.wallet}>{btn}</div>
     </div>
