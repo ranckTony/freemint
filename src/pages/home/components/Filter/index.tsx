@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import { Button } from "antd";
 
 
@@ -6,15 +6,13 @@ import styles from "./index.module.css";
 
 interface IProps {
     value: string,
+    activeValue: string,
     change: (a: string) => void
+    changActive: (a: string) => void
 }
 
 
-const Filter: FC<IProps> = ({ value, change }) => {
-
-
-
-    const [active, setActive] = useState("all")
+const Filter: FC<IProps> = ({ value, activeValue, change, changActive }) => {
 
     const periodList = [{
         text: "1M",
@@ -47,8 +45,8 @@ const Filter: FC<IProps> = ({ value, change }) => {
     return (
         <div className={styles.filter}>
             <div className={styles.filterTab}>
-                <Button onClick={() => setActive("all")} className="bigButton" style={{ width: "124px" }} type={active === "all" ? "primary" : "default"}>All</Button>
-                <Button onClick={() => setActive("verified")} className="bigButton" style={{ width: "124px" }} type={active === "verified" ? "primary" : "default"}>Verified</Button>
+                <Button onClick={() => changActive("all")} className="bigButton" style={{ width: "124px" }} type={activeValue === "all" ? "primary" : "default"}>All</Button>
+                <Button onClick={() => changActive("verified")} className="bigButton" style={{ width: "124px" }} type={activeValue === "verified" ? "primary" : "default"}>Verified</Button>
             </div>
             <span className={styles.blockDelay}>区块延时：0.5s</span>
             <div className={styles.period}>

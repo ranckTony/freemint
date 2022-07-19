@@ -15,6 +15,7 @@ import "@/mock";
 
 function Home() {
   const [period, setPeriod] = useState("HOUR_01");
+  const [active, setActive] = useState("all");
 
   const [dataList, setDataList] = useState([]);
 
@@ -24,15 +25,20 @@ function Home() {
     };
     getCollectionList(params).then(({ data }) => {
       console.log(data);
-      setDataList(data.data);
+      let dataList = data.data;
+      if(active === 'verified') {
+          dataList.filter((d: { verified: boolean; }) => d.verified)
+      }
+      setDataList(dataList);
     });
-  }, [period]);
+  }, [period, active]);
+
 
   return (
     <div className="App">
       <Header />
       <Description />
-      <Filter value={period} change={setPeriod} />
+      <Filter value={period} activeValue={active} change={setPeriod} changActive={setActive}/>
       <DataList data={dataList} />
     </div>
   );
