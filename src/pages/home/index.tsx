@@ -36,7 +36,6 @@ function Home() {
 
   return (
     <div className="App">
-      <Header />
       <Description />
       <Filter value={period} activeValue={active} change={setPeriod} changActive={setActive}/>
       <DataList data={dataList} />
