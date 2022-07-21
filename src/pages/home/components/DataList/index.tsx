@@ -30,7 +30,7 @@ export default function DataList({ data }: IProps) {
         return a[0]/(a[0]+a[1]+a[2]) * partionColumWidth;
     }
     const partion = (a: number[]) => {
-        return Math.round(a[0]/(a[0]+a[1]+a[2]) * 100) 
+        return Math.round(a[0]/(a[0]+a[1]+a[2]) * 100)
     }
 
     const [tipsShow, setTipsShow] = useState({})
@@ -82,8 +82,8 @@ export default function DataList({ data }: IProps) {
                     )}
                 />
                 <Column
-                    title="Owner Address"
-                    key="price"
+                    title="Owners"
+                    key="owners"
                     width="120px"
                     className={styles.floorPrice}
                     render={(_: any, record: iCollectionItem) => (
@@ -131,7 +131,7 @@ export default function DataList({ data }: IProps) {
                             <div>
                                 <span className={styles.partionTips}>{
                                     partion([
-                                        record.totalSupply -  record.pending - record.minted, 
+                                        record.totalSupply -  record.pending - record.minted,
                                         record.pending,
                                         record.minted])
                                         }%
@@ -146,41 +146,41 @@ export default function DataList({ data }: IProps) {
                                 </span>
                                 <span> / </span>
                                 <span className={styles.partionTips}>{
-                                    100 - 
+                                    100 -
                                     partion([
-                                        record.totalSupply -  record.pending - record.minted, 
+                                        record.totalSupply -  record.pending - record.minted,
                                         record.pending,
                                         record.minted]) -
                                     partion([
                                         record.pending,
                                         record.totalSupply -  record.pending - record.minted,
-                                        record.minted])                                    
+                                        record.minted])
                                     }%
                                 </span>
                             </div>
                             <Space size={0}>
                                 <div style={{ width: partionWidth([
-                                            record.totalSupply -  record.pending - record.minted, 
+                                            record.totalSupply -  record.pending - record.minted,
                                             record.pending,
                                             record.minted]) }}>
-                                    
+
                                     <div style={{ height: '12px', backgroundColor: '#217AFF' }}></div>
                                 </div>
                                 <div style={{ width:  partionWidth([
                                             record.pending,
-                                            record.totalSupply -  record.pending - record.minted, 
+                                            record.totalSupply -  record.pending - record.minted,
                                             record.minted]) }}>
                                     <div style={{ height: '12px', backgroundColor: '#5398FF' }}></div>
                                 </div>
                                 <div style={{ width: partionWidth([
                                             record.minted,
-                                            record.totalSupply -  record.pending - record.minted, 
+                                            record.totalSupply -  record.pending - record.minted,
                                             record.pending]) }}>
                                     <div style={{ height: '12px', backgroundColor: '#C1DAFF' }}></div>
                                 </div>
                             </Space>
                         </div>
-                        
+
                     )}
                 />
                 <Column
@@ -209,28 +209,28 @@ export default function DataList({ data }: IProps) {
                     className={styles.linksColumn}
                     render={(_: any, record: iCollectionItem) => (
                         <Space size={24}>
-                            {record.website ? 
-                            <a href={record.website}>
-                               <WebSite/> 
+                            {record.website ?
+                            <a href={record.website} target='_blank'>
+                               <WebSite/>
                             </a> :
                             <WebSite color="#9B9A9D"/>
                             }
-                            {record.twitter ? 
-                            <a href={record.twitter}>
-                                 <Twitter/> 
+                            {record.twitter ?
+                            <a href={record.twitter} target='_blank'>
+                                 <Twitter/>
                             </a> :
                             <Twitter color="#9B9A9D"/>
                             }
-                            {record.opensea ?
-                            <a href={record.opensea}>
+                            {record.openseaSite ?
+                            <a href={record.openseaSite} target='_blank'>
                                 <Opensea/>
-                            </a> : 
+                            </a> :
                             <Opensea color="#9B9A9D"/>
                             }
                             {record.etherscan ?
-                            <a href={record.etherscan}>
+                            <a href={record.etherscan} target='_blank'>
                                 <Etherscan/>
-                            </a> : 
+                            </a> :
                             <Etherscan color="#9B9A9D"/>
                             }
                         </Space>

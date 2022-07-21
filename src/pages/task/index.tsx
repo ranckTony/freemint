@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Tabs, Input, DatePicker, Switch, Button, Modal } from "antd";
+import React, { useState } from "react";
+import { Tabs, Input, DatePicker, Switch, Button, Modal, Table } from "antd";
 import type { DatePickerProps, RangePickerProps } from 'antd/es/date-picker';
 
 import Description from "./components/Description";
 import styles from "./index.module.less";
 import classNames from "classnames";
 import { LeftOutlined } from '@ant-design/icons';
+import eth from "@/assets/eth.png";
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
 
 
 function Task() {
+
+  const { Column } = Table
 
   const [mintShow, setMintShow] = useState<boolean>(false);
   const [mintType, setMintType] = useState<string>('follow');
@@ -122,11 +125,93 @@ function Task() {
       </div>
 
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
+
+
+    interface TaskDataType {
+        key?: string;
+        taskName: string;
+        taskType: string;
+        quantity: number;
+        volume: number[];
+    }
+
+    const [currentTasks, setCurrentTasks] = useState<TaskDataType[]>([]);
+
+    const addTaskData = () => {
+        setModalVisible(false);
+        setMintShow(false);
+        if (mintType === 'follow') {
+            setCurrentTasks([...currentTasks, {
+                taskName: 'Murakami.Flowers',
+                taskType: 'Follow',
+                quantity: 447,
+                volume: [5.22, 328.85]
+            }]);
+        } else {
+            setCurrentTasks([...currentTasks, {
+                taskName: 'North Las Vegas',
+                taskType: 'Condition',
+                quantity: 447,
+                volume: [5.22, 328.85]
+            }]);
+        }
+    }
+
+    const currentTaskTable =
+        <Table dataSource={currentTasks} tableLayout="fixed" pagination={false} >
+            <Column
+                title="Task Name"
+                key="name"
+                width="120px"
+                className={styles.textColumn}
+                render={(_: any, record: TaskDataType) => (
+                    <span>{record.taskName}</span>
+                )}
+            />
+            <Column
+                title="Type"
+                key="type"
+                width="120px"
+                className={styles.textColumn}
+                render={(_: any, record: TaskDataType) => (
+                    <div className={record.taskType === 'Follow' ? styles.taskFollow : styles.taskCondition}>{record.taskType}</div>
+                )}
+            />
+            <Column
+                title="Quantity"
+                key="quantity"
+                width="120px"
+                className={styles.textColumn}
+                render={(_: any, record: TaskDataType) => (
+                    <span>{record.quantity}</span>
+                )}
+            />
+            <Column
+                title={
+                    <span className={styles.volumeHeader}>Volume</span>
+                }
+                key="volume"
+                width="120px"
+                className={styles.textColumn}
+                render={(_: any, record: TaskDataType) => (
+                    <div className={styles.volume}>
+                        <div className={styles.volume0}>
+                            <img src={eth} alt=""/>
+                            <span>{record.volume[0]}</span>
+                        </div>
+                        <div className={styles.volume1}>${record.volume[1]}</div>
+                    </div>
+                )}
+            />
+        </Table>;
+
+
+    const taskTableOpr = <div className={styles.tableOperation} onClick={() => setMintShow(true)}>+ New Task</div>;
 
   return (
     <div className={styles.task}>
-      <Description></Description>
+      <Description/>
         {mintShow ?
             <div className={styles.mintContainer}>
                 <div onClick={() => setMintShow(false)}>
@@ -145,7 +230,7 @@ function Task() {
             </div>
             :
             <div className={styles.tabContainer}>
-                <Tabs defaultActiveKey="1">
+                <Tabs defaultActiveKey="1" tabBarExtraContent={taskTableOpr}>
                     <TabPane
                         tab={
                         <span className={styles.tab1Header}>
@@ -153,6 +238,7 @@ function Task() {
                         </span>
                         }
                         key="1">
+                        {currentTasks.length > 0 && currentTaskTable}
                     </TabPane>
                     {/*<TabPane
                         tab={
@@ -164,10 +250,12 @@ function Task() {
                         Tab 2
                     </TabPane>*/}
                 </Tabs>
+                {currentTasks.length === 0 &&
                 <div className={styles.empty}>
                     <h1 >Create my first Task</h1>
                     <Button className={styles.createBtn} type="primary" onClick={() => setMintShow(true)}>Start New Task</Button>
-                </div>
+                </div>}
+
             </div>
         }
 
@@ -196,7 +284,7 @@ function Task() {
             <div className={styles.modalDivider}/>
             <div className={styles.modalHeader}>Minting protection</div>
             <div className={styles.modalContent}>Activated</div>
-            <Button className={styles.modalBtn} type="primary">Confirm</Button>
+            <Button className={styles.modalBtn} type="primary" onClick={addTaskData}>Confirm</Button>
         </Modal>
     </div>
   );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import "@/styles/reset.css";
 
-import Header from "./components/Header";
 import Description from "./components/Description";
 import Filter from "./components/Filter";
 import DataList from "./components/DataList";
@@ -37,7 +36,7 @@ function Home() {
   return (
     <div className="App">
       <Description />
-      <Filter value={period} activeValue={active} change={setPeriod} changActive={setActive}/>
+      <Filter activeValue={active} changePeriod={setPeriod} changActive={setActive}/>
       <DataList data={dataList} />
     </div>
   );

@@ -1,18 +1,17 @@
 import React, { FC } from "react"
 import { Button } from "antd";
-
+import useUrlState from '@ahooksjs/use-url-state';
 
 import styles from "./index.module.css";
 
 interface IProps {
-    value: string,
     activeValue: string,
-    change: (a: string) => void
+    changePeriod: (a: string) => void
     changActive: (a: string) => void
 }
 
 
-const Filter: FC<IProps> = ({ value, activeValue, change, changActive }) => {
+const Filter: FC<IProps> = ({activeValue, changePeriod, changActive }) => {
 
     const periodList = [{
         text: "1M",
@@ -40,19 +39,24 @@ const Filter: FC<IProps> = ({ value, activeValue, change, changActive }) => {
         value: "HOUR_24"
     },]
 
+    const [urlPeriodParam, setUrlPeriodParam] = useUrlState({ period: 'HOUR_01' });
 
+    const periodChange = (item: any) => {
+        if(item.value === 'MINUTE_01') return;
+        changePeriod(item.value)
+        setUrlPeriodParam({period: item.value})
+    }
 
     return (
         <div className={styles.filter}>
             <div className={styles.filterTab}>
-                <Button onClick={() => changActive("all")} className="bigButton" style={{ width: "124px" }} type={activeValue === "all" ? "primary" : "default"}>All</Button>
-                <Button onClick={() => changActive("verified")} className="bigButton" style={{ width: "124px" }} type={activeValue === "verified" ? "primary" : "default"}>Verified</Button>
+                <Button type="primary" onClick={() => changActive("all")}  className={activeValue === "all" ? styles.filterActive : styles.filterUnActive}>All</Button>
+                <Button type="primary" onClick={() => changActive("verified")} className={activeValue === "verified" ? styles.filterActive : styles.filterUnActive}>Verified</Button>
             </div>
-            <span className={styles.blockDelay}>区块延时：0.5s</span>
             <div className={styles.period}>
                 <label htmlFor="">Period:</label>
                 <ul>
-                    {periodList.map(item => <li onClick={() => change(item.value)} className={`${item.value === value ? styles.active : ""}`}>{item.text}</li>)}
+                    {periodList.map(item => <li onClick={() => periodChange(item)} className={`${item.value === urlPeriodParam.period ? styles.active : ""}`}>{item.text}</li>)}
                 </ul>
             </div>
         </div >

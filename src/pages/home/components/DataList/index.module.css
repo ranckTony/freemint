@@ -32,10 +32,10 @@
     /* 中性色/文字 Text/5-正文标题 */
     color: #131214;
     width: 200px;
-    white-space: nowrap;    
-    overflow: hidden;       
-    text-overflow: ellipsis;   
-    display: inline-block;     
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
 }
 
 .time {
@@ -66,7 +66,6 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 26px;
-    font-feature-settings: 'ss01' on, 'ss07' on;
     color: #131214;
 }
 
