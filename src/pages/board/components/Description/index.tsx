@@ -9,7 +9,7 @@ export default function Description() {
         <div className={styles.descrip}>
            <div>
             <h1>Discover Freemint NFT projects minting now </h1>
-            <p>Professional monitor real time ERC-721 free mints down to the minute</p>
+            <p>Professional monitor real time ERC-721/ ERC-1155 free mints down to the minute</p>
            </div>
 
            <div className={styles.gasfree}>

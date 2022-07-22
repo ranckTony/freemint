@@ -1,45 +1,23 @@
-import React, { useEffect, useState } from "react";
+import styles from "./index.module.less";
 
-import "@/styles/reset.css";
-
-import Description from "./components/Description";
-import Filter from "./components/Filter";
-import DataList from "./components/DataList";
-import Footer from "./components/Footer";
-
-import { getCollectionList } from "@/services";
-import { iCollectionListParams } from "@/typings";
-
-import "@/mock";
+import page1 from "@/assets/page1.jpeg";
+import page2 from "@/assets/page2.jpeg";
+import page3 from "@/assets/page3.jpeg";
+import page4 from "@/assets/page4.jpeg";
+import page5 from "@/assets/page5.jpeg";
+import page6 from "@/assets/page6.jpeg";
 
 function Home() {
-  const [period, setPeriod] = useState("HOUR_01");
-  const [active, setActive] = useState("all");
-
-  const [dataList, setDataList] = useState([]);
-
-  useEffect(() => {
-    const params: iCollectionListParams = {
-      period,
-    };
-    getCollectionList(params).then(({ data }) => {
-      console.log(data);
-      let dataList = data.data;
-      if(active === 'verified') {
-          dataList.filter((d: { verified: boolean; }) => d.verified)
-      }
-      setDataList(dataList);
-    });
-  }, [period, active]);
-
-
-  return (
-    <div className="App">
-      <Description />
-      <Filter activeValue={active} changePeriod={setPeriod} changActive={setActive}/>
-      <DataList data={dataList} />
-    </div>
-  );
+    return (
+        <div className={styles.imgContainer}>
+            <img src={page1} alt=''/>
+            <img src={page2} alt=''/>
+            <img src={page3} alt=''/>
+            <img src={page4} alt=''/>
+            <img src={page5} alt=''/>
+            <img src={page6} alt=''/>
+        </div>
+    )
 }
 
 export default Home;

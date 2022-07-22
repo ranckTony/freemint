@@ -7,6 +7,8 @@ import styles from "./index.module.less";
 import classNames from "classnames";
 import { LeftOutlined } from '@ant-design/icons';
 import eth from "@/assets/eth.png";
+import {TaskDataType} from "@/typings";
+import DetailModal from "@/pages/task/components/DetailModal";
 
 const { TabPane } = Tabs;
 const { RangePicker } = DatePicker;
@@ -127,15 +129,6 @@ function Task() {
 
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-
-    interface TaskDataType {
-        key?: string;
-        taskName: string;
-        taskType: string;
-        quantity: number;
-        volume: number[];
-    }
-
     const [currentTasks, setCurrentTasks] = useState<TaskDataType[]>([]);
 
     const addTaskData = () => {
@@ -159,7 +152,16 @@ function Task() {
     }
 
     const currentTaskTable =
-        <Table dataSource={currentTasks} tableLayout="fixed" pagination={false} >
+        <Table dataSource={currentTasks} tableLayout="fixed" pagination={false}
+           onRow={record => {
+               return {
+                   onClick: event => {
+                       console.log(record)
+                       setDetailVisible(true)
+                       setDetailRecord(record)
+                   },
+               };
+           }}>
             <Column
                 title="Task Name"
                 key="name"
@@ -209,9 +211,13 @@ function Task() {
 
     const taskTableOpr = <div className={styles.tableOperation} onClick={() => setMintShow(true)}>+ New Task</div>;
 
+    /*task detail modal*/
+    const [detailVisible, setDetailVisible] = useState<boolean>(false);
+    const [detailRecord, setDetailRecord] = useState<TaskDataType>({} as TaskDataType);
+
   return (
     <div className={styles.task}>
-      <Description/>
+      {/*<Description/>*/}
         {mintShow ?
             <div className={styles.mintContainer}>
                 <div onClick={() => setMintShow(false)}>
@@ -230,6 +236,7 @@ function Task() {
             </div>
             :
             <div className={styles.tabContainer}>
+                <Description/>
                 <Tabs defaultActiveKey="1" tabBarExtraContent={taskTableOpr}>
                     <TabPane
                         tab={
@@ -286,6 +293,8 @@ function Task() {
             <div className={styles.modalContent}>Activated</div>
             <Button className={styles.modalBtn} type="primary" onClick={addTaskData}>Confirm</Button>
         </Modal>
+
+        <DetailModal detailVisible={detailVisible} changeVisible={setDetailVisible} record={detailRecord}/>
     </div>
   );
 }

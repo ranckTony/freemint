@@ -13,7 +13,6 @@ import top2 from "@/assets/top2.png";
 import top3 from "@/assets/top3.png";
 import top4 from "@/assets/top4.png";
 import top5 from "@/assets/top5.png";
-import Footer from "../Footer";
 
 import { iCollectionItem } from "@/typings";
 import { timeFrom } from "@/utils";
@@ -61,6 +60,15 @@ export default function DataList({ data }: IProps) {
                                 <span className={styles.time}>{timeFrom(record.createdAt)}</span>
                             </div>
                         </div>
+                    )}
+                />
+                <Column
+                    title="Type"
+                    key="type"
+                    width="120px"
+                    className={styles.floorPrice}
+                    render={(_: any, record: iCollectionItem) => (
+                        <span>{record.type}</span>
                     )}
                 />
                 <Column
@@ -237,7 +245,7 @@ export default function DataList({ data }: IProps) {
                     )}
                 />
             </Table>
-            <Footer />
+            {/*<Footer />*/}
         </div>
     )
 }

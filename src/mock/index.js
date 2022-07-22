@@ -12,7 +12,10 @@ Mock.mock(/\/collection\/list/, "get", option => {
                     "Rejects",
                     "Uedine Chapel"
                 ],
-                "nameTips": false,
+                "type|1" : [
+                    "ERC-721",
+                    "ERC-1155"
+                ],
                 "totalSupply|4000-9000": 1,
                 "ownerCount|1-9000": 1,
                 "verified|1-2": true,
