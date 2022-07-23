@@ -47,16 +47,17 @@ export default function DataList({ data }: IProps) {
                 <Column
                     title="Collection"
                     key="name"
-                    width="300px"
+                    ellipsis={true}
                     render={(_: any, record: iCollectionItem) => (
                         <div className={styles.name}>
                             <img src={record.imageURI ?? userface} alt="" style={{borderRadius: '50%'}}></img>
                             <div className={styles.nameContent}>
-                                <Tooltip placement="top" title={record.name} arrowPointAtCenter visible={tipsShow[record.name as keyof typeof tipsShow]}>
+                                <span className={styles.nameDetail} >{record.name}</span>
+                                {/* <Tooltip placement="top" title={record.name} arrowPointAtCenter visible={tipsShow[record.name as keyof typeof tipsShow]}>
                                     <div className={styles.nameDetail} onMouseOver={(e) => isShowToolTips(record, e)}>
                                         <span>{record.name}</span>
                                     </div>
-                                </Tooltip>
+                                </Tooltip> */}
                                 <span className={styles.time}>{timeFrom(record.createdAt)}</span>
                             </div>
                         </div>
@@ -65,7 +66,7 @@ export default function DataList({ data }: IProps) {
                 <Column
                     title="Type"
                     key="type"
-                    width="120px"
+                    width="110px"
                     className={styles.floorPrice}
                     render={(_: any, record: iCollectionItem) => (
                         <span>{record.type}</span>
@@ -92,7 +93,7 @@ export default function DataList({ data }: IProps) {
                 <Column
                     title="Owners"
                     key="owners"
-                    width="120px"
+                    width="100px"
                     className={styles.floorPrice}
                     render={(_: any, record: iCollectionItem) => (
                         <span>{record.ownerCount}</span>
@@ -134,6 +135,7 @@ export default function DataList({ data }: IProps) {
                 <Column
                     title="Left / Pending / Minted"
                     key="partion"
+                    width="250px"
                     render={(_: any, record: iCollectionItem) => (
                         <div>
                             <div>
@@ -199,14 +201,12 @@ export default function DataList({ data }: IProps) {
                         </div>
                     }
                     key="volume"
+                    width="120px"
                     render={(_: any, record: iCollectionItem) => (
                         <div className={styles.topWalletContainer}>
                             <img src={top1} alt="" style={{zIndex:5}}></img>
                             <img src={top2} alt="" style={{zIndex:4}}></img>
                             <img src={top3} alt="" style={{zIndex:3}}></img>
-                            <img src={top4} alt="" style={{zIndex:2}}></img>
-                            <img src={top1} alt="" style={{zIndex:1}}></img>
-                            <img src={top5} alt="" style={{zIndex:0}}></img>
                             <span className={styles.topWallet}>+{record.ownerCount%100}</span>
                         </div>
                     )}
@@ -214,6 +214,7 @@ export default function DataList({ data }: IProps) {
                 <Column
                     title="Links"
                     key="links"
+                    width="220px"
                     className={styles.linksColumn}
                     render={(_: any, record: iCollectionItem) => (
                         <Space size={24}>

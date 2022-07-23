@@ -1,6 +1,6 @@
 import Mock from "mockjs"
 
-Mock.mock(/\/collection\/list/, "get", option => {
+ Mock.mock(/\/collection\/list/, "get", option => {
     console.log(option, "mock option")
 
     const data = Mock.mock({
@@ -37,6 +37,6 @@ Mock.mock(/\/collection\/list/, "get", option => {
 
 
     return data
-})
+ })
 
 

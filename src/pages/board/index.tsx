@@ -26,7 +26,7 @@ function Board() {
       console.log(data);
       let dataList = data.data;
       if(active === 'verified') {
-          dataList.filter((d: { verified: boolean; }) => d.verified)
+        dataList = dataList.filter((d: any) => d.verified === true)
       }
       setDataList(dataList);
     });

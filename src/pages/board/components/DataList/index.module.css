@@ -31,11 +31,11 @@
     font-feature-settings: 'ss01' on, 'ss07' on;
     /* 中性色/文字 Text/5-正文标题 */
     color: #131214;
-    width: 200px;
+    /* width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: inline-block;
+    display: inline-block; */
 }
 
 .time {
